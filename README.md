@@ -34,15 +34,15 @@ Alternatively you can curl/wget the file straight to `/usr/bin/rofi-checklist` a
 
 ## Usage
 
-Rofi-checklist is best when mapped to a keybinding. Simply create a keybind that calls `rofi-checklist`.
+rofi-checklist is best when mapped to a keybinding. Simply create a keybind that calls `rofi-checklist`.
 
 For example, in i3, you can map it `Alt`+`T` (**T** for **T**asks) by adding `bindsym Mod1+T exec rofi-checklist` to your `~/.config/i3/config` file.
 
-Rofi-checklist is very simple to use. Once launched, it shows a list of tasks. If you press enter on an incomplete task, it is marked as complete. Selecting it again removes it from the list.
+rofi-checklist is very simple to use. Once launched, it shows a list of tasks. If you press enter on an incomplete task, it is marked as complete. Selecting it again removes it from the list.
 
 There are two actions at the top of the list, one for clearing all tasks and one for clearing only completed tasks. To add a new task, simply type a task name that doesn't exist yet and press enter.
 
-Rofi-checklist stores the checklist in `~/.rofi-checklist` as a markdown-compliant format, such as the following:
+rofi-checklist stores the checklist in `~/.rofi-checklist` as a markdown-compliant format, such as the following:
 
 ```MD
 - [x] Consume the blood of my enemies
@@ -50,4 +50,4 @@ Rofi-checklist stores the checklist in `~/.rofi-checklist` as a markdown-complia
 - [ ] Go to bed
 ```
 
-This allows the checklist file to be used within other markdown editors. For example, you can make a symbolic link from `~/.rofi-checklist` to somewhere in your [Obsidian](https://obsidian.md/) vault - allowing a nice integration into your knowledge management software. If there's interest, support for configurable/multiple checklist file sources might be added in the future.
+This allows the checklist file to be used within other markdown editors. For example, you can make a symbolic link from `~/.rofi-checklist` to somewhere in your [Obsidian](https://obsidian.md/) vault — allowing a nice integration into your knowledge management software. If there's interest, support for configurable/multiple checklist file sources might be added in the future.
