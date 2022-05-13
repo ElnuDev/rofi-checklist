@@ -65,7 +65,7 @@ case $menu in
 esac
 
 # Run rofi/dmenu, replace display checkmarks with raw syntax
-selection=`printf "%s%s%s\n" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
+selection=`printf "%s%s%s" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
 selection=${selection//"$EMPTY"/"$EMPTY_RAW"}
 selection=${selection//"$FILLED"/"$FILLED_RAW"}
 
