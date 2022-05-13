@@ -59,7 +59,7 @@ case $menu in
 		command="rofi -dmenu"; options="-selected-row 2" ;;
 	dmenu)
 		exe_exists dmenu || { echo "dmenu isn't installed"; exit 1; }
-		command=dmenu ;;
+		command=dmenu; options="-l 10" ;;
 	*)
 		echo "Please install either rofi or dmenu"; exit 1 ;;
 esac
