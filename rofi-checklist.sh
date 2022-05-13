@@ -40,8 +40,29 @@ while [ $i -lt $count ]; do
 done
 [[ $completed_tasks = "n" ]] && clear_completed=""
 
-# Run rofi, replace display checkmarks with raw syntax
-selection=`printf "%s%s%s\n" "$clear" "$clear_completed" "$list" | rofi -dmenu -i -selected-row 2 -p " Task:"`
+# Check for rofi/dmenu
+if [[ -n $1 ]]; then
+	menu=$1
+elif [[ -f /usr/bin/rofi ]]; then
+	menu=rofi
+elif [[ -f /usr/bin/dmenu ]]; then
+	menu=dmenu
+else
+	echo "Please install either rofi or dmenu"; exit 1
+fi
+case $menu in
+	rofi)
+		[[ -f /usr/bin/rofi ]] || { echo "rofi isn't installed"; exit 1; }
+		command="rofi -dmenu"; options="-selected-row 2" ;;
+	dmenu)
+		[[ -f /usr/bin/dmenu ]] || { echo "dmenu isn't installed"; exit 1; }
+		command=dmenu ;;
+	*)
+		echo "Please install either rofi or dmenu"; exit 1 ;;
+esac
+
+# Run rofi/dmenu, replace display checkmarks with raw syntax
+selection=`printf "%s%s%s\n" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
 selection=${selection//"$EMPTY"/"$EMPTY_RAW"}
 selection=${selection//"$FILLED"/"$FILLED_RAW"}
 
