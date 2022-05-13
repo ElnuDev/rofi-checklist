@@ -2,7 +2,7 @@
 
 # rofi-checklist
 
-A minimalist checklist menu for [rofi](/davatorium/rofi).
+A minimalist checklist menu for [rofi](/davatorium/rofi) (and also [dmenu](https://tools.suckless.org/dmenu/)).
 
 ## Installation
 
@@ -33,6 +33,10 @@ and copy [rofi-checklist.sh](rofi-checklist.sh) to `/usr/bin/rofi-checklist`.
 Alternatively you can curl/wget the file straight to `/usr/bin/rofi-checklist` and add the executable flag manually.
 
 ## Usage
+
+- `rofi-checklist`: Run rofi-checklist in automatic menu mode. Will use either rofi or dmenu depending on which is installed, preferring rofi.
+- `rofi-checklist rofi`: Run rofi-checklist in rofi mode. Will use rofi, and error even if dmenu is installed.
+- `rofi-checklist dmenu`: Run rofi-checklist in dmenu mode. Will use dmenu, and error even if rofi is installed.
 
 rofi-checklist is best when mapped to a keybinding. Simply create a keybind that calls `rofi-checklist`.
 
