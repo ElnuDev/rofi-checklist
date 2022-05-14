@@ -13,7 +13,7 @@ CLEAR_COMPLETED=" Clear completed"
 clear_completed="${CLEAR_COMPLETED}${NL}"
 selected_row=2
 
-# Read checlist file
+# Read checklist file
 touch $FILE
 list_raw=`cat $FILE`
 IFS=$'\n' # split by newlines instead of spaces
