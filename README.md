@@ -28,9 +28,9 @@ Ensure rofi is installed, then clone this repository,
 ```SH
 git clone https://github.com/ElnuDev/rofi-checklist.git
 ```
-and copy [rofi-checklist.sh](rofi-checklist.sh) to `/usr/bin/rofi-checklist`.
+and copy [rofi-checklist.sh](rofi-checklist.sh) to `/usr/local/bin/rofi-checklist`.
 
-Alternatively you can curl/wget the file straight to `/usr/bin/rofi-checklist` and add the executable flag manually.
+Alternatively you can curl/wget the file straight to `/usr/local/bin/rofi-checklist` and add the executable flag manually.
 
 ## Usage
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Setup constants
 NL=$'\n'
@@ -41,28 +41,31 @@ done
 [[ $completed_tasks = "n" ]] && clear_completed=""
 
 # Check for rofi/dmenu
+exe_exists() {
+	command -v "$1" >/dev/null
+}
 if [[ -n $1 ]]; then
 	menu=$1
-elif [[ -f /usr/bin/rofi ]]; then
+elif exe_exists rofi; then
 	menu=rofi
-elif [[ -f /usr/bin/dmenu ]]; then
+elif exe_exists dmenu; then
 	menu=dmenu
 else
 	echo "Please install either rofi or dmenu"; exit 1
 fi
 case $menu in
 	rofi)
-		[[ -f /usr/bin/rofi ]] || { echo "rofi isn't installed"; exit 1; }
+		exe_exists rofi || { echo "rofi isn't installed"; exit 1; }
 		command="rofi -dmenu"; options="-selected-row 2" ;;
 	dmenu)
-		[[ -f /usr/bin/dmenu ]] || { echo "dmenu isn't installed"; exit 1; }
-		command=dmenu ;;
+		exe_exists dmenu || { echo "dmenu isn't installed"; exit 1; }
+		command=dmenu; options="-l 10" ;;
 	*)
 		echo "Please install either rofi or dmenu"; exit 1 ;;
 esac
 
 # Run rofi/dmenu, replace display checkmarks with raw syntax
-selection=`printf "%s%s%s\n" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
+selection=`printf "%s%s%s" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
 selection=${selection//"$EMPTY"/"$EMPTY_RAW"}
 selection=${selection//"$FILLED"/"$FILLED_RAW"}
 
