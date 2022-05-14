@@ -13,6 +13,9 @@ CLEAR_COMPLETED=" Clear completed"
 clear_completed="${CLEAR_COMPLETED}${NL}"
 selected_row=2
 
+# Load configuration file
+source ~/.config/rofi-checklist.conf &> /dev/null
+
 # Read checklist file
 touch $FILE
 list_raw=`cat $FILE`
