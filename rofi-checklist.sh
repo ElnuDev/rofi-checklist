@@ -11,6 +11,7 @@ CLEAR=" Clear all"
 clear="${CLEAR}${NL}"
 CLEAR_COMPLETED=" Clear completed"
 clear_completed="${CLEAR_COMPLETED}${NL}"
+selected_row=2
 
 # Read checlist file
 touch $FILE
@@ -24,7 +25,7 @@ list=${list//"$EMPTY_RAW"/"$EMPTY"} # empty checkboxes
 list=${list//"$FILLED_RAW"/"$FILLED"} # filled checkboxes
 
 # Don't show clear all option if task list is empty
-[[ -z $list ]] && clear=""
+[[ -z $list ]] && { clear=""; selected_row=$(($selected_row - 1)); }
 
 # Don't show clear completed option if there are no completed tasks
 count=${#list_raw_array[*]}
@@ -38,7 +39,7 @@ while [ $i -lt $count ]; do
 	fi
 	i=$(($i + 1))
 done
-[[ $completed_tasks = "n" ]] && clear_completed=""
+[[ $completed_tasks = "n" ]] && { clear_completed=""; selected_row=$(($selected_row - 1)); }
 
 # Check for rofi/dmenu
 exe_exists() {
@@ -56,7 +57,7 @@ fi
 case $menu in
 	rofi)
 		exe_exists rofi || { echo "rofi isn't installed"; exit 1; }
-		command="rofi -dmenu"; options="-selected-row 2" ;;
+		command="rofi -dmenu"; options="-selected-row $selected_row" ;;
 	dmenu)
 		exe_exists dmenu || { echo "dmenu isn't installed"; exit 1; }
 		command=dmenu; options="-l 10" ;;
