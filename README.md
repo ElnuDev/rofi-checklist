@@ -54,4 +54,16 @@ rofi-checklist stores the checklist in `~/.rofi-checklist` as a markdown-complia
 - [ ] Go to bed
 ```
 
-This allows the checklist file to be used within other markdown editors. For example, you can make a symbolic link from `~/.rofi-checklist` to somewhere in your [Obsidian](https://obsidian.md/) vault — allowing a nice integration into your knowledge management software. If there's interest, support for configurable/multiple checklist file sources might be added in the future.
+This allows the checklist file to be used within other markdown editors. For example, you can make a symbolic link from `~/.rofi-checklist` to somewhere in your [Obsidian](https://obsidian.md/) vault — allowing a nice integration into your knowledge management software.
+
+## Configuration
+
+To configure rofi-checklist, create `~/.config/rofi-checklist.conf`. For example, the following changes the checklist file path and makes the checkboxes square instead of circular:
+
+```SH
+FILE=~/.rofi-checklist2
+EMPTY=
+FILLED=
+```
+
+Ability to switch between checklist files within rofi-checklist itself will be coming soon.
