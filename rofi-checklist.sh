@@ -10,7 +10,8 @@ FILLED_RAW="- [x]"
 CLEAR=" Clear all"
 clear="${CLEAR}${NL}"
 CLEAR_COMPLETED=" Clear completed"
-clear_completed="${CLEAR_COMPLETED}${NL}"
+RESET_COMPLETED=" Reset completed"
+completed="${CLEAR_COMPLETED}${NL}${RESET_COMPLETED}${NL}"
 selected_row=2
 
 # Load configuration file
@@ -42,7 +43,7 @@ while [ $i -lt $count ]; do
 	fi
 	i=$(($i + 1))
 done
-[[ $completed_tasks = "n" ]] && { clear_completed=""; selected_row=$(($selected_row - 1)); }
+[[ $completed_tasks = "n" ]] && { completed=""; selected_row=$(($selected_row - 2)); }
 
 # Check for rofi/dmenu
 exe_exists() {
@@ -69,7 +70,7 @@ case $menu in
 esac
 
 # Run rofi/dmenu, replace display checkmarks with raw syntax
-selection=`printf "%s%s%s" "$clear" "$clear_completed" "$list" | eval "$command -i $options -p \" Task:\""`
+selection=`printf "%s%s%s" "$clear" "$completed" "$list" | eval "$command -i $options -p \" Task:\""`
 selection=${selection//"$EMPTY"/"$EMPTY_RAW"}
 selection=${selection//"$FILLED"/"$FILLED_RAW"}
 
@@ -88,6 +89,8 @@ case $selection in
 			i=$(($i + 1))
 		done
 		list_raw="${list_raw_array[*]}" ;;
+	$RESET_COMPLETED)
+		list_raw=${list_raw//"$FILLED_RAW"/"$EMPTY_RAW"} ;;
 	`printf "%q" "$FILLED_RAW"`*)
 		replace="${selection}${NL}"
 		list_raw=${list_raw//"$replace"/""}
