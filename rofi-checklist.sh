@@ -102,8 +102,7 @@ case $selection in
 		if [[ -n $selection ]]; then
 			[[ -n $list_raw ]] && list_raw="${list_raw}${NL}"
 			list_raw=`printf "%s%s %s\n" "$list_raw" "$EMPTY_RAW" "$selection"`
-		fi
-		exit ;;
+		fi ;;
 esac
 
 printf "%s\n" "$list_raw" >| $FILE
